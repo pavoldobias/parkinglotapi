@@ -54,7 +54,7 @@
           $("#park-lot-1-title").html('<strong>'+data.description+'</strong>');
           
           var date = new Date();
-          $("#park-lot-1-time").html((date.toString().replace(/ GMT.*/g,''));
+          $("#park-lot-1-time").html(date.toString().replace(/ GMT.*/g,''));
           
           $("#park-lot-1-space").html(data.available_lots);          
         });
@@ -65,7 +65,7 @@
           $("#park-lot-2-title").html('<strong>'+data.description+'</strong>');
           
           var date = new Date();
-          $("#park-lot-2-time").html((date.toString().replace(/ GMT.*/g,''));
+          $("#park-lot-2-time").html(date.toString().replace(/ GMT.*/g,''));
           
           $("#park-lot-2-space").html(data.available_lots);          
         });
