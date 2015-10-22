@@ -51,9 +51,12 @@
         $.ajax({
           url: "parking_lots/t_115_house" 
         }).done(function(data) {
-          console.log(data);
+          $("#park-lot-1-title").html(data.description);
+          $("#park-lot-1-time").html(new Date());
+          $("#park-lot-1-space").html(data.available_lots);          
         });
       }, 2000);
+        
     </script>
         
     <style>
@@ -68,11 +71,11 @@
           }
           
           .parking-lot-app-left {          
-            background-image: url('inside_green.jpg');                       
+            background-image: url('web/inside_green.jpg');                       
           }
           
           .parking-lot-app-right {            
-            background-image: url('outside_yellow.jpg');
+            background-image: url('web/outside_yellow.jpg');
           }
           
           .parking-lot-app-left, .parking-lot-app-right {          
@@ -118,10 +121,10 @@
 
     <!-- REQUIRED JS/CSS. Coremetrics stats JS is FIRST! -->
     <!-- NOTE: These are local versions. They are not the versions that should be used anywhere else but this page. -->
-    <link href="www.css" rel="stylesheet" type="text/css" />
+    <link href="web/www.css" rel="stylesheet" type="text/css" />
 
     <script src="//1.www.s81c.com/common/stats/ida_stats.js"></script>
-    <script src="www.js"></script>
+    <script src="web/www.js"></script>
 
 </head>
 
