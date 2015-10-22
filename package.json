@@ -1,0 +1,13 @@
+{
+  "name": "parking-lot-api",
+  "description": "this is my parking lot api app",
+  "dependencies": {
+    "ejs": "2.3.3",
+    "express": "4.13.3",
+    "mongoose": "4.1.12",
+    "JSONPath": "0.10.0"
+  },
+  "scripts": {
+    "start": "node app.js"
+  }
+}
