@@ -15,6 +15,10 @@ home.get('/', function(req, res) {
 	res.send('Welcome at Parking Lot App');
 });
 
+home.get('/web', function(req, res) {
+	res.render('web/index.html');
+});
+
 parking.get('/', function(req, res) {
 	console.log(__dirname);
 	fs.readFile( parking_json, 'utf8', function (err, data) {
