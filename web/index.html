@@ -47,20 +47,26 @@
 				}
 			};
 			
-      setInterval(function(){
+      setInterval(function(){        
         $.ajax({
           url: "parking_lots/t_115_house" 
-        }).done(function(data) {
-          $("#park-lot-1-title").html(data.description);
-          $("#park-lot-1-time").html((new Date()).replace(/ GMT.*/g,''));
+        }).done(function(data) {        
+          $("#park-lot-1-title").html('<strong>'+data.description+'</strong>');
+          
+          var date = new Date();
+          $("#park-lot-1-time").html((date.toString().replace(/ GMT.*/g,''));
+          
           $("#park-lot-1-space").html(data.available_lots);          
         });
         
         $.ajax({
           url: "parking_lots/t_115_outside" 
         }).done(function(data) {
-          $("#park-lot-2-title").html(data.description);
-          $("#park-lot-2-time").html((new Date()).replace(/ GMT.*/g,''));
+          $("#park-lot-2-title").html('<strong>'+data.description+'</strong>');
+          
+          var date = new Date();
+          $("#park-lot-2-time").html((date.toString().replace(/ GMT.*/g,''));
+          
           $("#park-lot-2-space").html(data.available_lots);          
         });
       }, 1000);
@@ -222,14 +228,14 @@
       <div class="parking-lot-api-title" id="park-lot-1-title"><strong>T115 House</strong></div>
       <div class="parking-lot-api-time" id="park-lot-1-time">Thu 22-10-2015 10:15:17</div>
       <div class="parking-lot-api-label">FREE SPACES</div>
-      <div class="parking-lot-api-free-space" id="park-lot-1-space">533</div>
+      <div class="parking-lot-api-free-space" id="park-lot-1-space">-</div>
       <a class="ibm-btn-pri ibm-btn-green-50 parking-lot-app-refresh" style="background: white; border-color: #fde876; color: #4b8400">&#8634; REFRESH</a>
     </div>
     <div class="parking-lot-app-right">
       <div class="parking-lot-api-title" id="park-lot-2-title"><strong>T115 House</strong></div>
       <div class="parking-lot-api-time" id="park-lot-2-time">Thu 22-10-2015 10:15:17</div>
       <div class="parking-lot-api-label">FREE SPACES</div>
-      <div class="parking-lot-api-free-space" id="park-lot-2-space">533</div>
+      <div class="parking-lot-api-free-space" id="park-lot-2-space">-</div>
       <a class="ibm-btn-pri ibm-btn-yellow-10 parking-lot-app-refresh" style="background: white; border-color: #fde876; color: rgb(218, 184, 0);">&#8634; REFRESH</a>
     </div>
   </div>
