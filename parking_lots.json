@@ -1,0 +1,22 @@
+{
+    "data": {
+        "t_115_house": {
+            "description": "T115 Parking House #1",
+            "capacity": "300",
+            "cars": [
+                "12345",
+                "23456",
+                "34567"
+            ]
+        },
+        "t_115_outside": {
+            "description": "T115 Parking Outside #2",
+            "capacity": "150",
+            "cars": [
+                "54321",
+                "65432",
+                "76543"
+            ]
+        }
+    }
+}

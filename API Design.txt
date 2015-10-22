@@ -1,0 +1,6 @@
+API Design
+
+/ = Dashboard = main web with reactjs
+/parking_lots - return list of parking lot ids
+/parking_lots/<parking_lot_id> - info about a specific parking lot
+/stats/<parking_lot_id>?start_date=...&end_date=... - return usage statistics about parking lot and parking space allocation
