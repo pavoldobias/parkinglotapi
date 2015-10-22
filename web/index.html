@@ -52,10 +52,18 @@
           url: "parking_lots/t_115_house" 
         }).done(function(data) {
           $("#park-lot-1-title").html(data.description);
-          $("#park-lot-1-time").html(new Date());
+          $("#park-lot-1-time").html((new Date()).replace(/ GMT.*/g,''));
           $("#park-lot-1-space").html(data.available_lots);          
         });
-      }, 2000);
+        
+        $.ajax({
+          url: "parking_lots/t_115_outside" 
+        }).done(function(data) {
+          $("#park-lot-2-title").html(data.description);
+          $("#park-lot-2-time").html((new Date()).replace(/ GMT.*/g,''));
+          $("#park-lot-2-space").html(data.available_lots);          
+        });
+      }, 1000);
         
     </script>
         
