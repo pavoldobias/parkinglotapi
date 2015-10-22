@@ -53,8 +53,8 @@ stats.get("/:id", function(req, res) {
 	console.log("id " +id);
 	if(id == jsonContent.parking_lot_id) {
 		console.log(id + " capacity = " + JSON.stringify(jsonContent.capacity));
-		var parseDatesString = "$.data[?(@.date_time>'"+ start_date +"')]";		
-		var parseEndDatesString = "$.data[?(@.date_time<'"+ end_date +"')]";	
+		var parseDatesString = "$.data[?(@.date_time>'"+ start_date +"')]";
+		var parseEndDatesString = "$.data[?(@.date_time<'"+ end_date +"')]";
 		var parseNewDatesString = "$.data[?(@.date_time>'"+start_date+"')]"
 		var data = jsonpath.eval(jsonContent, parseDatesString);
 		//console.log(JSON.stringify(data));
@@ -74,8 +74,8 @@ stats.get("/:id", function(req, res) {
 app.use("/", home);
 app.use("/parking_lots", parking);
 app.use("/stats", stats);
-
-var server = app.listen(8081, function () {
+var port = process.env.PORT || 5000;
+var server = app.listen(port, function () {
 
   var host = server.address().address
   var port = server.address().port
