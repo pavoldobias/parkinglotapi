@@ -36,7 +36,7 @@ parking.get('/:id', function(req, res) {
 	console.log("id " + id);
 	var jsonContent = JSON.parse(file);
 	var jsonData = jsonContent.data[id];
-	jsonData.available_lots = 120 + Math.floor((Math.random() * 5 - 2));
+	jsonData.available_lots = 120 + Math.floor((Math.random() * 10 - 4));
 	console.log("jsonContent " + JSON.stringify(jsonData));
 	res.send(jsonData);
 });
