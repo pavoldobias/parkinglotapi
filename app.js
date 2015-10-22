@@ -16,7 +16,7 @@ home.get('/', function(req, res) {
 });
 
 home.get('/web', function(req, res) {
-	res.render('web/index.html');
+	res.sendfile('web/index.html');
 });
 
 parking.get('/', function(req, res) {
