@@ -10,6 +10,8 @@ var parking_json = __dirname + "/" + "parking_lots.json";
 var dummy_json = __dirname + "/" + "dummy.json";
 var t_115_stats = __dirname + "/" + "t_115_stats.json";
 
+app.use(express.static('web'));
+
 home.get('/', function(req, res) {
 	console.log(__dirname);
 	res.send('Welcome at Parking Lot App');
