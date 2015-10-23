@@ -9,6 +9,8 @@ var stats = express();
 var parking_json = __dirname + "/" + "parking_lots.json";
 var dummy_json = __dirname + "/" + "dummy.json";
 var t_115_stats = __dirname + "/" + "t_115_stats.json";
+global.inc = 0;
+global.free_lots = 190;
 
 app.use(express.static('web'));
 
@@ -36,8 +38,140 @@ parking.get('/:id', function(req, res) {
 	console.log("id " + id);
 	var jsonContent = JSON.parse(file);
 	var jsonData = jsonContent.data[id];
-	jsonData.available_lots = 120 + Math.floor((Math.random() * 10 - 4));
-	console.log("jsonContent " + JSON.stringify(jsonData));
+	console.log(inc);
+	jsonData.available_lots = free_lots;
+	//jsonData.available_lots = 190;
+		//20 capacity maximum = morning (7 - 8) - add
+		if (inc < 51) {
+			if(jsonData.available_lots % 2 == 0 && jsonData.available_lots > 180 && inc < 51) {
+				if (jsonData.available_lots > 190) {
+					jsonData.available_lots -= Math.floor(Math.random() * 3) + 2
+					free_lots = jsonData.available_lots
+					inc +=5
+				}
+				else jsonData.available_lots -= Math.floor(Math.random() * 5) + 2
+					free_lots = jsonData.available_lots
+					inc+=5	
+			}
+		// 20 capacity maximum = morning (7 - 8) - remove
+			else if(jsonData.available_lots % 3 == 0 && jsonData.available_lots > 180 && inc < 51) {
+				jsonData.available_lots += Math.floor(Math.random() * 5) + 2
+				inc+=5
+				free_lots = jsonData.available_lots
+			}
+			else {jsonData.available_lots -= Math.floor(Math.random() * 5) + 2
+				inc +=5
+				free_lots = jsonData.available_lots
+			}	
+		}	
+		// morning (8 - 12) - add more	
+		else if (inc > 51 && inc < 121) {
+			console.log(">51 loop");
+			// add more often
+			if (jsonData.available_lots % 2 == 0 && jsonData.available_lots > 5 && inc < 121) {
+				if (jsonData.available_lots < 34) {
+					jsonData.available_lots -= Math.floor(Math.random() * (jsonData.available_lots - 5) + 3)
+					inc +=5
+					free_lots = jsonData.available_lots
+				}
+				else jsonData.available_lots -= Math.floor(Math.random() * 20) + 13
+					inc +=5
+					free_lots = jsonData.available_lots
+			}
+			
+			// remove less often
+			else if (jsonData.available_lots % 19 == 0 && jsonData.available_lots > 5 && inc < 121) {
+				jsonData.available_lots += Math.floor(Math.random() * 4) + 2
+				inc+=5
+				free_lots = jsonData.available_lots
+			}
+			else if(jsonData.available_lots > 5 && inc < 121) {
+				jsonData.available_lots -= Math.floor(Math.random() * 2) + 1
+				inc+=5
+				free_lots = jsonData.available_lots
+			}
+			else {jsonData.available_lots += Math.floor(Math.random() * 2) + 1
+				inc+=5
+				free_lots = jsonData.available_lots
+			}
+		}
+		else if(inc > 121 && inc < 221) {
+			if(jsonData.available_lots % 2 == 0 && jsonData.available_lots > 5 && inc < 221 ) {
+				jsonData.available_lots -= Math.floor(Math.random() * 3) + 1
+				free_lots = jsonData.available_lots
+				inc+=5	
+			}
+		// 20 capacity maximum = morning (7 - 8) - remove
+			else if(jsonData.available_lots % 3 == 0 && jsonData.available_lots > 5 && inc < 221) {
+				jsonData.available_lots += Math.floor(Math.random() * 2) + 1
+				inc+=5
+				free_lots = jsonData.available_lots
+			}	
+			else if (inc < 221) {
+				jsonData.available_lots += Math.floor(Math.random() * 2) + 1
+				inc+=5
+				free_lots = jsonData.available_lots
+			}
+		}
+		else if (inc > 221 && inc < 281) {
+			if (jsonData.available_lots % 2 == 0 && jsonData.available_lots > 0 && inc < 281) {
+				if (jsonData.available_lots < 160 ){
+					jsonData.available_lots += Math.floor(Math.random() * 25) + 13
+					inc +=5
+					free_lots = jsonData.available_lots
+				}
+				else if(jsonData.available_lots < 39) {
+					jsonData.available_lots += Math.floor(Math.random() * 5) + 2
+					inc +=5
+					free_lots = jsonData.available_lots
+				}
+				else if (jsonData.available_lots < 5 ) {
+					jsonData.available_lots += Math.floor(Math.random() * 5) + 2
+					inc +=5
+					free_lots = jsonData.available_lots
+				}
+				else jsonData.available_lots -= Math.floor(Math.random() * 3) + 2
+					inc +=5
+					free_lots = jsonData.available_lots
+			}
+			else if (jsonData.available_lots % 19 == 0 && jsonData.available_lots > 39 && inc < 281) {
+				jsonData.available_lots -= Math.floor(Math.random() * 5) + 2
+				inc +=5
+				free_lots = jsonData.available_lots
+			}
+			else if (jsonData.available_lots < 182 && inc < 281) {
+				jsonData.available_lots += Math.floor(Math.random() * (jsonData.available_lots + 8)) + 2
+				inc +=5
+				free_lots = jsonData.available_lots
+			}
+			else jsonData.available_lots += Math.floor(Math.random() * 3) + 2
+				inc +=5
+				free_lots = jsonData.available_lots
+		}	
+		else if (inc > 281 && inc < 301) {
+			if(jsonData.available_lots % 2 == 0 && jsonData.available_lots < 301) {
+				jsonData.available_lots += Math.floor(Math.random() * 5) + 2
+				free_lots = jsonData.available_lots
+				inc+=5	
+			}
+		
+			else if(jsonData.available_lots % 3 == 0 && jsonData.available_lots < 301) {
+				jsonData.available_lots -= Math.floor(Math.random() * 5) + 2
+				inc+=5
+				free_lots = jsonData.available_lots
+			}
+			else {jsonData.available_lots += Math.floor(Math.random() * 5) + 2
+				free_lots = jsonData.available_lots
+				inc+=5
+			}
+		}
+		else if (inc > 301) {
+			inc = 0;
+			free_lots = 190;
+		}	
+		
+	//jsonData.available_lots = 120 + Math.floor((Math.random() * 10 - 4));
+	//console.log("jsonContent " + JSON.stringify(jsonData));
 	res.send(jsonData);
 });
 
