@@ -42,158 +42,148 @@ parking.get('/:id', function(req, res) {
 	console.log("id " + id);
 	var jsonContent = JSON.parse(file);
 	var jsonData = jsonContent.data[id];
-	var incrementer = 0.1
+	var incrementer = 0.2
 	console.log(inc);
 	jsonData.available_lots = free_lots;
 	//jsonData.available_lots = 190;
 		//20 capacity maximum = morning (7 - 8) - add
-		if (inc < 51) {
+		if (inc < 41) {
 			if (jsonData.available_lots < 170) {
 				jsonData.available_lots += randomRange(2,5); //Math.floor(Math.random() * 5) + 2
 				inc+=incrementer
 				free_lots = jsonData.available_lots
 			}
-			else if(jsonData.available_lots % 2 == 0 && jsonData.available_lots > 180 && inc < 51) {
+			else if(jsonData.available_lots % 2 == 0 && jsonData.available_lots > 180) {
 				if (jsonData.available_lots > 190) {
-					jsonData.available_lots -= randomRange(2,3);//Math.floor(Math.random() * 3) + 2
+					jsonData.available_lots -= randomRange(1,3);//Math.floor(Math.random() * 3) + 2
 					free_lots = jsonData.available_lots
 					inc +=incrementer
 				}
-				else jsonData.available_lots -= randomRange(2,5);//Math.floor(Math.random() * 5) + 2
+				else jsonData.available_lots -= randomRange(2,4);//Math.floor(Math.random() * 5) + 2
 					free_lots = jsonData.available_lots
 					inc+=incrementer	
 			}
 		// 20 capacity maximum = morning (7 - 8) - remove
-			else if(jsonData.available_lots % 3 == 0 && jsonData.available_lots > 180 && inc < 51) {
-				jsonData.available_lots += randomRange(2,5);//Math.floor(Math.random() * 5) + 2
+			else if(jsonData.available_lots % 3 == 0 && jsonData.available_lots < 180) {
+				jsonData.available_lots += randomRange(1,3);//Math.floor(Math.random() * 5) + 2
 				inc+=incrementer
 				free_lots = jsonData.available_lots
 			}
-			else {jsonData.available_lots -= randomRange(2,5);//Math.floor(Math.random() * 5) + 2
+			else {jsonData.available_lots -= randomRange(2,4);//Math.floor(Math.random() * 5) + 2
 				inc +=incrementer
 				free_lots = jsonData.available_lots
 			}	
 		}	
 		// morning (8 - 12) - add more	
-		else if (inc > 51 && inc < 121) {
-			console.log(">51 loop");
+		else if (inc > 41 && inc < 101) {
+			console.log(">41 loop");
 			// add more often
 			if (jsonData.available_lots < 5 ) {
-				jsonData.available_lots += randomRange(2,4);//Math.floor(Math.random() * 4) + 2
+				jsonData.available_lots += randomRange(1,2);//Math.floor(Math.random() * 4) + 2
 				inc+=incrementer
 				free_lots = jsonData.available_lots
 			}
-			else if (jsonData.available_lots % 2 == 0 && jsonData.available_lots > 5 && inc < 121) {
-				if (jsonData.available_lots < 34) {
-					jsonData.available_lots -= randomRange(3,jsonData.available_lots - 5)
+			else if (jsonData.available_lots % 2 == 0 && jsonData.available_lots > 5) {
+				if (jsonData.available_lots < 50) {
+					jsonData.available_lots -= randomRange(1,2);
 					inc +=incrementer
 					free_lots = jsonData.available_lots
 				}
-				else jsonData.available_lots -= randomRange(2,5);//Math.floor(Math.random() * 20) + 13
+				else jsonData.available_lots -= randomRange(1,2);//Math.floor(Math.random() * 20) + 13
 					inc +=incrementer
 					free_lots = jsonData.available_lots
 			}
 			
 			// remove less often
-			else if (jsonData.available_lots % 19 == 0 && jsonData.available_lots > 5 && inc < 121) {
-				jsonData.available_lots += randomRange(2,4);//Math.floor(Math.random() * 4) + 2
+			else if (jsonData.available_lots % 19 == 0 && jsonData.available_lots > 5) {
+				jsonData.available_lots += randomRange(2,5);//Math.floor(Math.random() * 4) + 2
 				inc+=incrementer
 				free_lots = jsonData.available_lots
 			}
-			else if(jsonData.available_lots > 5 && inc < 121) {
-				jsonData.available_lots -= randomRange(1,2);//Math.floor(Math.random() * 2) + 1
+			else if(jsonData.available_lots < 5) {
+				jsonData.available_lots += randomRange(1,2);//Math.floor(Math.random() * 2) + 1
 				inc+=incrementer
 				free_lots = jsonData.available_lots
 			}
-			else {jsonData.available_lots += randomRange(1,2);//Math.floor(Math.random() * 2) + 1
+			else {jsonData.available_lots -= randomRange(1,2);//Math.floor(Math.random() * 2) + 1
 				inc+=incrementer
 				free_lots = jsonData.available_lots
 			}
 		}
-		else if(inc > 121 && inc < 221) {
-			if (jsonData.available_lots < 5) {
-				jsonData.available_lots += randomRange(2,4);//Math.floor(Math.random() * 4) + 2
+		else if(inc > 101 && inc < 151) {
+			if (jsonData.available_lots < 3) {
+				jsonData.available_lots += randomRange(1,3);//Math.floor(Math.random() * 4) + 2
 				inc+=incrementer
 				free_lots = jsonData.available_lots
 			}
-			else if(jsonData.available_lots % 2 == 0 && jsonData.available_lots > 5 && inc < 221 ) {
-				jsonData.available_lots -= Math.floor(Math.random() * 3) + 1
+			else if(jsonData.available_lots % 2 == 0 && jsonData.available_lots > 3) {
+				jsonData.available_lots += randomRange(1,2);//Math.floor(Math.random() * 2) + 1
 				free_lots = jsonData.available_lots
 				inc+=incrementer	
 			}
 		// 20 capacity maximum = morning (7 - 8) - remove
-			else if(jsonData.available_lots % 3 == 0 && jsonData.available_lots > 5 && inc < 221) {
-				jsonData.available_lots -= Math.floor(Math.random() * 2) + 1
+			else if(jsonData.available_lots % 3 == 0 && jsonData.available_lots > 3) {
+				jsonData.available_lots -= randomRange(1,2);//Math.floor(Math.random() * 2) + 1
 				inc+=incrementer
 				free_lots = jsonData.available_lots
 			}	
-			else if (jsonData.available_lots % 3 == 0 && jsonData.available_lots < 5 && inc < 221){
-				jsonData.available_lots += Math.floor(Math.random() * 2) + 1
+			else if (jsonData.available_lots % 3 == 0 && jsonData.available_lots < 3){
+				jsonData.available_lots += randomRange(1,2);//Math.floor(Math.random() * 2) + 1
 				inc+=incrementer
 				free_lots = jsonData.available_lots
 			}
-			else jsonData.available_lots += Math.floor(Math.random() * 2) + 1
+			else jsonData.available_lots += randomRange(1,2);//Math.floor(Math.random() * 2) + 1
 				inc+=incrementer
 				free_lots = jsonData.available_lots
 		}
-		else if (inc > 221 && inc < 281) {
+		else if (inc > 151 && inc < 191) {
 			if (jsonData.available_lots > 180) {
-				jsonData.available_lots -= Math.floor(Math.random() * 4) + 2
+				jsonData.available_lots -= randomRange(1,3);//Math.floor(Math.random() * 3) + 1
 				inc+=incrementer
 				free_lots = jsonData.available_lots
 			}
-			else if (jsonData.available_lots % 2 == 0 && jsonData.available_lots > 0 && inc < 281) {
+			else if (jsonData.available_lots % 2 == 0 && jsonData.available_lots > 0) {
 				if (jsonData.available_lots < 160 ){
-					jsonData.available_lots += randomRange(3,7);//Math.floor(Math.random() * 25) + 13
+					jsonData.available_lots += randomRange(1,3);//Math.floor(Math.random() * 25) + 13
 					inc +=incrementer
 					free_lots = jsonData.available_lots
 				}
-				else if(jsonData.available_lots < 39) {
-					jsonData.available_lots += Math.floor(Math.random() * 5) + 2
-					inc +=incrementer
-					free_lots = jsonData.available_lots
-				}
-				else if (jsonData.available_lots < 5 ) {
-					jsonData.available_lots += Math.floor(Math.random() * 5) + 2
-					inc +=incrementer
-					free_lots = jsonData.available_lots
-				}
-				else jsonData.available_lots -= Math.floor(Math.random() * 3) + 2
+				else jsonData.available_lots -= randomRange(1,3);//Math.floor(Math.random() * 1) + 3
 					inc +=incrementer
 					free_lots = jsonData.available_lots
 			}
-			else if (jsonData.available_lots % 19 == 0 && jsonData.available_lots > 39 && inc < 281) {
-				jsonData.available_lots -= Math.floor(Math.random() * 5) + 2
+			else if (jsonData.available_lots % 3 == 0 && jsonData.available_lots > 39) {
+				jsonData.available_lots -= randomRange(1,3);//Math.floor(Math.random() * 3) + 1
 				inc +=incrementer
 				free_lots = jsonData.available_lots
 			}
-			else jsonData.available_lots += Math.floor(Math.random() * 8) + 2
+			else jsonData.available_lots += randomRange(1,2);//Math.floor(Math.random() * 2) + 1
 				inc +=incrementer
 				free_lots = jsonData.available_lots
 		}	
-		else if (inc > 281 && inc < 301) {
+		else if (inc > 191 && inc < 221) {
 			if (jsonData.available_lots > 180) {
-				jsonData.available_lots -= Math.floor(Math.random() * 4) + 2
+				jsonData.available_lots -= randomRange(1,3);//Math.floor(Math.random() * 3) + 1
 				inc+=incrementer
 				free_lots = jsonData.available_lots
 			}
 			else if(jsonData.available_lots % 2 == 0 && jsonData.available_lots < 301) {
-				jsonData.available_lots += Math.floor(Math.random() * 5) + 2
+				jsonData.available_lots += randomRange(2,3);//Math.floor(Math.random() * 3) + 2
 				free_lots = jsonData.available_lots
 				inc+=incrementer	
 			}
 		
 			else if(jsonData.available_lots % 3 == 0 && jsonData.available_lots < 301) {
-				jsonData.available_lots -= Math.floor(Math.random() * 5) + 2
+				jsonData.available_lots -= randomRange(1,3);//Math.floor(Math.random() * 3) + 1
 				inc+=incrementer
 				free_lots = jsonData.available_lots
 			}
-			else {jsonData.available_lots += Math.floor(Math.random() * 5) + 2
+			else {jsonData.available_lots += randomRange(1,3);//Math.floor(Math.random() * 3) + 1
 				free_lots = jsonData.available_lots
 				inc+=incrementer
 			}
 		}
-		else if (inc > 301) {
+		else if (inc > 221) {
 			inc = 0;
 			free_lots = 190;
 		}	
