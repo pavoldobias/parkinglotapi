@@ -31,6 +31,10 @@ parking.get('/', function(req, res) {
 	});
 });
 
+function randomRange(low, high) {
+	return Math.floor(Math.random() * (high - low +1)) + low;
+}
+
 parking.get('/:id', function(req, res) {
 	var file = fs.readFileSync(parking_json, "utf-8");
 	var id = req.params.id;
@@ -38,34 +42,34 @@ parking.get('/:id', function(req, res) {
 	console.log("id " + id);
 	var jsonContent = JSON.parse(file);
 	var jsonData = jsonContent.data[id];
-	var incrementer = 2.5
+	var incrementer = 0.01
 	console.log(inc);
 	jsonData.available_lots = free_lots;
 	//jsonData.available_lots = 190;
 		//20 capacity maximum = morning (7 - 8) - add
 		if (inc < 51) {
 			if (jsonData.available_lots < 170) {
-				jsonData.available_lots += Math.floor(Math.random() * 5) + 2
+				jsonData.available_lots += randomRange(2,5); //Math.floor(Math.random() * 5) + 2
 				inc+=incrementer
 				free_lots = jsonData.available_lots
 			}
 			else if(jsonData.available_lots % 2 == 0 && jsonData.available_lots > 180 && inc < 51) {
 				if (jsonData.available_lots > 190) {
-					jsonData.available_lots -= Math.floor(Math.random() * 3) + 2
+					jsonData.available_lots -= randomRange(2,3);//Math.floor(Math.random() * 3) + 2
 					free_lots = jsonData.available_lots
 					inc +=incrementer
 				}
-				else jsonData.available_lots -= Math.floor(Math.random() * 5) + 2
+				else jsonData.available_lots -= randomRange(2,5);//Math.floor(Math.random() * 5) + 2
 					free_lots = jsonData.available_lots
 					inc+=incrementer	
 			}
 		// 20 capacity maximum = morning (7 - 8) - remove
 			else if(jsonData.available_lots % 3 == 0 && jsonData.available_lots > 180 && inc < 51) {
-				jsonData.available_lots += Math.floor(Math.random() * 5) + 2
+				jsonData.available_lots += randomRange(2,5);//Math.floor(Math.random() * 5) + 2
 				inc+=incrementer
 				free_lots = jsonData.available_lots
 			}
-			else {jsonData.available_lots -= Math.floor(Math.random() * 5) + 2
+			else {jsonData.available_lots -= randomRange(2,5);//Math.floor(Math.random() * 5) + 2
 				inc +=incrementer
 				free_lots = jsonData.available_lots
 			}	
