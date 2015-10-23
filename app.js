@@ -42,7 +42,7 @@ parking.get('/:id', function(req, res) {
 	console.log("id " + id);
 	var jsonContent = JSON.parse(file);
 	var jsonData = jsonContent.data[id];
-	var incrementer = 0.01
+	var incrementer = 0.03
 	console.log(inc);
 	jsonData.available_lots = free_lots;
 	//jsonData.available_lots = 190;
