@@ -79,40 +79,40 @@ parking.get('/:id', function(req, res) {
 			console.log(">51 loop");
 			// add more often
 			if (jsonData.available_lots < 5 ) {
-				jsonData.available_lots += Math.floor(Math.random() * 4) + 2
+				jsonData.available_lots += randomRange(2,4);//Math.floor(Math.random() * 4) + 2
 				inc+=incrementer
 				free_lots = jsonData.available_lots
 			}
 			else if (jsonData.available_lots % 2 == 0 && jsonData.available_lots > 5 && inc < 121) {
 				if (jsonData.available_lots < 34) {
-					jsonData.available_lots -= Math.floor(Math.random() * (jsonData.available_lots - 5) + 3)
+					jsonData.available_lots -= randomRange(3,jsonData.available_lots - 5)
 					inc +=incrementer
 					free_lots = jsonData.available_lots
 				}
-				else jsonData.available_lots -= Math.floor(Math.random() * 20) + 13
+				else jsonData.available_lots -= randomRange(2,5);//Math.floor(Math.random() * 20) + 13
 					inc +=incrementer
 					free_lots = jsonData.available_lots
 			}
 			
 			// remove less often
 			else if (jsonData.available_lots % 19 == 0 && jsonData.available_lots > 5 && inc < 121) {
-				jsonData.available_lots += Math.floor(Math.random() * 4) + 2
+				jsonData.available_lots += randomRange(2,4);//Math.floor(Math.random() * 4) + 2
 				inc+=incrementer
 				free_lots = jsonData.available_lots
 			}
 			else if(jsonData.available_lots > 5 && inc < 121) {
-				jsonData.available_lots -= Math.floor(Math.random() * 2) + 1
+				jsonData.available_lots -= randomRange(1,2);//Math.floor(Math.random() * 2) + 1
 				inc+=incrementer
 				free_lots = jsonData.available_lots
 			}
-			else {jsonData.available_lots += Math.floor(Math.random() * 2) + 1
+			else {jsonData.available_lots += randomRange(1,2);//Math.floor(Math.random() * 2) + 1
 				inc+=incrementer
 				free_lots = jsonData.available_lots
 			}
 		}
 		else if(inc > 121 && inc < 221) {
 			if (jsonData.available_lots < 5) {
-				jsonData.available_lots += Math.floor(Math.random() * 4) + 2
+				jsonData.available_lots += randomRange(2,4);//Math.floor(Math.random() * 4) + 2
 				inc+=incrementer
 				free_lots = jsonData.available_lots
 			}
@@ -144,7 +144,7 @@ parking.get('/:id', function(req, res) {
 			}
 			else if (jsonData.available_lots % 2 == 0 && jsonData.available_lots > 0 && inc < 281) {
 				if (jsonData.available_lots < 160 ){
-					jsonData.available_lots += Math.floor(Math.random() * 25) + 13
+					jsonData.available_lots += randomRange(3,7);//Math.floor(Math.random() * 25) + 13
 					inc +=incrementer
 					free_lots = jsonData.available_lots
 				}
