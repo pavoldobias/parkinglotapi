@@ -46,8 +46,8 @@
 					}
 				}
 			};
-			
-      setInterval(function(){        
+      
+      function refresh1() {
         $.ajax({
           url: "parking_lots/t_115_house" 
         }).done(function(data) {        
@@ -57,9 +57,11 @@
           $("#park-lot-1-time").html(date.toString().replace(/ GMT.*/g,''));
           
           $("#park-lot-1-space").html(data.available_lots);          
-        });
-        
-        $.ajax({
+        });        
+      }
+      
+      function refresh2() {
+          $.ajax({
           url: "parking_lots/t_115_outside" 
         }).done(function(data) {
           $("#park-lot-2-title").html('<strong>'+data.description+'</strong>');
@@ -68,9 +70,13 @@
           $("#park-lot-2-time").html(date.toString().replace(/ GMT.*/g,''));
           
           $("#park-lot-2-space").html(data.available_lots);          
-        });
+        });    
+      }
+			
+      setInterval(function(){        
+          refresh1();
+          refresh2();
       }, 5000);
-        
     </script>
         
     <style>
@@ -229,14 +235,14 @@
       <div class="parking-lot-api-time" id="park-lot-1-time">Thu 22-10-2015 10:15:17</div>
       <div class="parking-lot-api-label">FREE SPACES</div>
       <div class="parking-lot-api-free-space" id="park-lot-1-space">-</div>
-      <a class="ibm-btn-pri ibm-btn-green-50 parking-lot-app-refresh" style="background: white; border-color: #fde876; color: #4b8400">&#8634; REFRESH</a>
+      <a class="ibm-btn-pri ibm-btn-green-50 parking-lot-app-refresh" style="background: white; border-color: #fde876; color: #4b8400" onclick="refresh1()">&#8634; REFRESH</a>
     </div>
     <div class="parking-lot-app-right">
       <div class="parking-lot-api-title" id="park-lot-2-title"><strong>T115 House</strong></div>
       <div class="parking-lot-api-time" id="park-lot-2-time">Thu 22-10-2015 10:15:17</div>
       <div class="parking-lot-api-label">FREE SPACES</div>
       <div class="parking-lot-api-free-space" id="park-lot-2-space">-</div>
-      <a class="ibm-btn-pri ibm-btn-yellow-10 parking-lot-app-refresh" style="background: white; border-color: #fde876; color: rgb(218, 184, 0);">&#8634; REFRESH</a>
+      <a class="ibm-btn-pri ibm-btn-yellow-10 parking-lot-app-refresh" style="background: white; border-color: #fde876; color: rgb(218, 184, 0);" onclick="refresh2()">&#8634; REFRESH</a>
     </div>
   </div>
 </div>
