@@ -130,9 +130,18 @@
           
           .parking-lot-api-time { margin-top: 1%;}
           
-          .parking-lot-api-label { margin-top: 20%; font-size: 30px; font-weight: bold;}
+          .parking-lot-api-label { margin-top: 20%; font-size: 30px; font-weight: bold; font-family: "HelvBoldIBM"; }
           
           .parking-lot-api-free-space { font-size: 200px; font-family: "HelvLightIBM"; margin-top: -5%; max-width: 300px}
+
+          .ibm-btn-blue-50 {
+              border-color: #00b3ef !important;
+              color: #00b3ef !important;
+          }
+
+          .ibm-btn-blue-50:hover {
+              color: white !important;;
+          }
           
     </style>
 
@@ -211,20 +220,22 @@
 <!-- LEADSPACE_END -->
 
 <div id="ibm-content-wrapper">      
-  <div id="ibm-content">
-          <div id="ibm-content-main">
+  <div>
+          <div>
           <div class="parking-app-menu-padding"></div>
           <div class="ibm-columns" style="margin: 0; width: 100%;">
               <div class="ibm-col-6-1"><div class="parking-app-menu-label-bold"><strong>Parking@IBM</strong></div></div>
-              <div class="ibm-col-6-3"></div>
-              <div class="ibm-col-6-2" style="text-align: right;">
+              <div class="ibm-col-6-4"></div>
+              <div style="text-align: right;">
                 <div class="parking-app-menu-label">iOS App</div>
                 <div class="parking-app-menu-label">Android App</div>
                 <div class="parking-app-menu-label">Community</div>                            
               </div>
           </div>    
       </div>
-  </div>        
+  </div>
+    <div class="parking-app-menu-padding"></div>
+    <div class="parking-app-menu-padding"></div>
 </div>    
 
 <div class="ibm-columns">
@@ -235,14 +246,16 @@
       <div class="parking-lot-api-time" id="park-lot-1-time">Thu 22-10-2015 10:15:17</div>
       <div class="parking-lot-api-label">FREE SPACES</div>
       <div class="parking-lot-api-free-space" id="park-lot-1-space">-</div>
-      <a class="ibm-btn-pri ibm-btn-green-50 parking-lot-app-refresh" style="background: white; border-color: #fde876; color: #4b8400" onclick="refresh1()">&#8634; REFRESH</a>
+      <a class="ibm-btn-pri ibm-btn-green-50 parking-lot-app-refresh" style="background: white; border: #4b8400; color: black;"
+         onclick="refresh1()">&#8634; Refresh</a>
     </div>
     <div class="parking-lot-app-right">
       <div class="parking-lot-api-title" id="park-lot-2-title"><strong>T115 House</strong></div>
       <div class="parking-lot-api-time" id="park-lot-2-time">Thu 22-10-2015 10:15:17</div>
       <div class="parking-lot-api-label">FREE SPACES</div>
       <div class="parking-lot-api-free-space" id="park-lot-2-space">-</div>
-      <a class="ibm-btn-pri ibm-btn-yellow-10 parking-lot-app-refresh" style="background: white; border-color: #fde876; color: rgb(218, 184, 0);" onclick="refresh2()">&#8634; REFRESH</a>
+      <a class="ibm-btn-pri ibm-btn-yellow-10 parking-lot-app-refresh" style="background: white; border: rgb(218, 184, 0); color: black;"
+         onclick="refresh2()">&#8634; Refresh</a>
     </div>
   </div>
 </div>
