@@ -19,24 +19,25 @@ var ds = loopback.createDataSource('soap',
 ds.once('connected', function () {
 
     // Create the model
-    var ParkingLotService = ds.createModel('ParkingLotService', {});
+    var BA115 = ds.createModel('BA115', {});
 
     // Refine the methods
-    ParkingLotService.freespaces = function (id, cb) {
-        ParkingLotService.GetFreePlacesForArticle({
+    BA115.freespaces = function (id, cb) {
+        BA115.GetFreePlacesForArticle({
             sourceUUID: 'user-8161fb80-36e6-11e6-ac61-9e71128cae77',
             destinationUUID: 'parker-5c74333d-a0e4-440d-844f-b23fefbed4f1',
             articleID: id
         }, function (err, response) {
             console.log(response);
             var result = response.GetFreePlacesForArticleResult || {};
+            result.name = 'Bratislava Tower 115';
             cb(err, result);
         });
     };
 
     // Map to REST/HTTP
     loopback.remoteMethod(
-        ParkingLotService.freespaces, {
+        BA115.freespaces, {
             accepts: [
                 {
                     arg: 'id', type: 'number', required: true,
@@ -49,7 +50,7 @@ ds.once('connected', function () {
     );
 
     // Expose to REST
-    app.model(ParkingLotService);
+    app.model(BA115);
 
     // LoopBack REST interface
     app.use(app.get('restApiRoot'), loopback.rest());
