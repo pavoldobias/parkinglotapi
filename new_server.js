@@ -27,7 +27,7 @@ ds.once('connected', function () {
             articleID: id
         }, function (err, response) {
             console.log(response);
-            var result = response;
+            var result = response.GetFreePlacesForArticleResult || {};
             cb(err, result);
         });
     };
