@@ -1,8 +1,10 @@
 var loopback = require('loopback');
 var path = require('path');
+var express = require('express');
 
 var app = module.exports = loopback();
 
+app.use(express.static('web'));
 app.set('restApiRoot', '/api');
 
 var ds = loopback.createDataSource('soap',
