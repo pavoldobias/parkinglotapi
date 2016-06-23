@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en-BE">
+<head>
+    <meta charset="UTF-8"/>
+
+    <!-- Add meta tag to consistently detect the width on an iPad at 768px -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="SHORTCUT ICON" href="//www.ibm.com/favicon.ico">
+    <link rel="canonical" href="http://www.ibm.com/REPLACEME">
+
+    <meta name="robots" content="index,follow">
+    <meta name="description" content="REPLACE ME">
+    <meta name="keywords" content="REPLACE ME">
+
+    <meta name="geo.country" content="be">
+    <meta name="dcterms.date" content="2014-07-23">
+    <meta name="dcterms.rights" content="© Copyright IBM Corp. 2015">
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <!-- JSON meta data objects for customer experience W3C spec-->
+    <script>
+        digitalData = {
+            page: {
+                category: {
+                    primaryCategory: 'SB03'
+                },
+                pageInfo: {
+                    effectiveDate: '2014-04-18',
+                    expiryDate: '2017-12-18',
+                    language: 'en-US',
+                    publishDate: '2013-12-19',
+                    publisher: 'IBM Corporation',
+                    version: 'v18',
+                    ibm: {
+                        contentDelivery: 'ECM/Filegen',
+                        contentProducer: 'ECM/IConS Adopter ## - XXXXXXXXXXXX - <autogend by ECM>',
+                        country: 'US',
+                        ibmDynamicCm: false,
+                        industry: 'ZZ',
+                        owner: 'Someone/Somewhere/IBM',
+                        siteID: 'IBMTEST',
+                        subject: 'IBM000',
+                        type: 'CT052'
+                    }
+                }
+            }
+        };
+
+        function refresh1() {
+            $.ajax({
+                url: "parking_lots/t_115_house"
+            }).done(function(data) {
+                $("#park-lot-1-title").html('<strong>' + data.description + '</strong>');
+
+                var date = new Date();
+                $("#park-lot-1-time").html(date.toString().replace(/ GMT.*/g, ''));
+
+                $("#park-lot-1-space").html(data.available_lots);
+            });
+        }
+
+        function refresh2() {
+            $.ajax({
+                url: "parking_lots/t_115_outside"
+            }).done(function(data) {
+                $("#park-lot-2-title").html('<strong>' + data.description + '</strong>');
+
+                var date = new Date();
+                $("#park-lot-2-time").html(date.toString().replace(/ GMT.*/g, ''));
+
+                $("#park-lot-2-space").html(data.available_lots);
+            });
+        }
+
+        setInterval(function() {
+            refresh1();
+            refresh2();
+        }, 5000);
+    </script>
+
+    <style>
+        .parking-app-menu-label, .parking-app-menu-label-bold {
+            display: inline;
+        }
+
+        .parking-lot-app-container {
+            display: flex;
+            margin: 0;
+        }
+
+        .parking-lot-app-left {
+            background: url('inside_green.jpg') no-repeat;
+        }
+
+        .parking-lot-app-right {
+            background: url('outside_yellow.jpg') no-repeat;
+        }
+
+        .parking-lot-app-left, .parking-lot-app-right {
+            width: 100%;
+            max-width: 860px;
+            min-height: 600px
+        }
+
+        .parking-lot-app-refresh {
+            margin-left: 20%;
+        }
+
+        .parking-app-menu-label {
+            margin-right: 15px;
+        }
+
+        .parking-app-menu-padding {
+            margin-top: 10px;
+        }
+
+        .phone-app-isometric {
+            background-image: url('phone-app-isometric-small.png');
+            width: 640px;
+            height: 430px;
+        }
+
+        .parking-lot-api-title, .parking-lot-api-time, .parking-lot-api-label, .parking-lot-api-free-space {
+            color: white;
+            font-size: 16px;
+            margin-left: 20%;
+            margin-top: 5%;
+        }
+
+        .parking-lot-api-time {
+            margin-top: 1%;
+        }
+
+        .parking-lot-api-label {
+            margin-top: 20%;
+            font-size: 30px;
+            font-weight: bold;
+            font-family: "HelvBoldIBM";
+        }
+
+        .parking-lot-api-free-space {
+            font-size: 200px;
+            font-family: "HelvLightIBM";
+            margin-top: -5%;
+            max-width: 300px
+        }
+
+        .ibm-btn-blue-50 {
+            border-color: #00b3ef !important;
+            color: #00b3ef !important;
+        }
+
+        .ibm-btn-blue-50:hover {
+            color: white !important;;
+        }
+        
+        @media screen and (min-width: 1750px) {
+            .parking-lot-app-container {
+                margin: 0 5%;
+            }
+        }
+
+    </style>
+
+    <!-- This should be a REVERSE breadcrumb. Start at specific and get more general category. -->
+    <title>Parking@IBM</title>
+
+    <!-- REQUIRED JS/CSS. Coremetrics stats JS is FIRST! -->
+    <!-- NOTE: These are local versions. They are not the versions that should be used anywhere else but this page. -->
+    <link href="www.css" rel="stylesheet" type="text/css"/>
+
+    <script src="//1.www.s81c.com/common/stats/ida_stats.js"></script>
+    <script src="www.js"></script>
+
+</head>
+
+
+<body id="ibm-com" class="ibm-type">
+
+<div id="ibm-top" class="ibm-landing-page">
+
+    <!-- MASTHEAD_BEGIN -->
+    <div id="ibm-masthead" role="banner" aria-label="IBM">
+        <div id="ibm-mast-options">
+            <ul role="toolbar" aria-labelledby="ibm-masthead">
+                <li id="ibm-geo" role="presentation"><a href="http://www.ibm.com/planetwide/select/selector.html"
+                                                        role="button"
+                                                        aria-label="United states selected - Choose a country">United
+                    States</a></li>
+            </ul>
+        </div>
+        <div id="ibm-universal-nav">
+            <!--
+                The nav element represents a section of a page that links to other pages or to parts
+                within the page: a section with navigation links.The nav element is primarily intended
+                for sections that consist of major navigation blocks. User agents (such as screen readers)
+                that are targeted at users who can benefit from navigation information being omitted in
+                the initial rendering, or who can benefit from navigation information being immediately
+                available, can use this element as a way to determine what content on the page to
+                initially skip or provide on request (or both).
+            -->
+            <nav role="navigation" aria-label="IBM">
+                <div id="ibm-home"><a href="http://www.ibm.com/us/en/">IBM®</a></div>
+                <ul id="ibm-menu-links" role="toolbar" aria-label="Site map">
+                    <li><a href="http://www.ibm.com/sitemap/us/en/">Site map</a></li>
+                </ul>
+            </nav>
+
+            <div id="ibm-search-module" role="search" aria-labelledby="ibm-masthead">
+                <form id="ibm-search-form" action="http://www.ibm.com/Search/" method="get">
+                    <p>
+                        <label for="q">IBM</label>
+                        <input type="text" maxlength="100" value="" placeholder="Search" name="q" id="q"
+                               aria-label="Search"/>
+                        <input type="hidden" value="18" name="v"/>
+                        <input type="hidden" value="utf" name="en"/>
+                        <input type="hidden" value="en" name="lang"/>
+                        <input type="hidden" value="us" name="cc"/>
+                        <input type="submit" id="ibm-search" class="ibm-btn-search" value="Submit"/>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- MASTHEAD_END -->
+
+
+    <!-- MAIN PAGE WRAPPER AROUND LEADSPACE, MAIN CONTENT SIDENAV AND RELATED CONTENT -->
+
+    <!-- LEADSPACE_BEGIN -->
+    <!--
+            The header element represents introductory content for its nearest ancestor sectioning
+            content or sectioning root element. A header typically contains a group of introductory
+            or navigational aids. When the nearest ancestor sectioning content or sectioning root
+            element is the body element, then it applies to the whole page.
+        -->
+    <!-- LEADSPACE_END -->
+
+    <div id="ibm-content-wrapper">
+        <div>
+            <div>
+                <div class="parking-app-menu-padding"></div>
+                <div class="ibm-columns" style="margin: 0; width: 100%;">
+                    <div class="ibm-col-6-1">
+                        <div class="parking-app-menu-label-bold"><strong>Parking@IBM</strong></div>
+                    </div>
+                    <div class="ibm-col-6-4"></div>
+                    <div style="text-align: right;">
+                        <div class="parking-app-menu-label">iOS App</div>
+                        <div class="parking-app-menu-label">Android App</div>
+                        <div class="parking-app-menu-label">Community</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="parking-app-menu-padding"></div>
+        <div class="parking-app-menu-padding"></div>
+    </div>
+
+        <div class="parking-lot-app-container">
+            <div class="parking-lot-app-left">
+                <div class="parking-lot-api-title" id="park-lot-1-title"><strong>T115 House</strong></div>
+                <div class="parking-lot-api-time" id="park-lot-1-time">Thu 22-10-2015 10:15:17</div>
+                <div class="parking-lot-api-label">FREE SPACES</div>
+                <div class="parking-lot-api-free-space" id="park-lot-1-space">-</div>
+                <a class="ibm-btn-pri ibm-btn-green-50 parking-lot-app-refresh"
+                   style="background: white; border: #4b8400; color: black;"
+                   onclick="refresh1()">&#8634; Refresh</a>
+            </div>
+            <div class="parking-lot-app-right">
+                <div class="parking-lot-api-title" id="park-lot-2-title"><strong>T115 House</strong></div>
+                <div class="parking-lot-api-time" id="park-lot-2-time">Thu 22-10-2015 10:15:17</div>
+                <div class="parking-lot-api-label">FREE SPACES</div>
+                <div class="parking-lot-api-free-space" id="park-lot-2-space">-</div>
+                <a class="ibm-btn-pri ibm-btn-yellow-10 parking-lot-app-refresh"
+                   style="background: white; border: rgb(218, 184, 0); color: black;"
+                   onclick="refresh2()">&#8634; Refresh</a>
+            </div>
+        </div>
+    
+    <div id="ibm-content">
+        <div class="parking-app-menu-padding"></div>
+        <div id="ibm-content-main">
+            <div class="parking-app-menu-padding"></div>
+            <div class="ibm-columns">
+                <div class="ibm-col-6-1"></div>
+                <div class="ibm-col-6-5">
+                    <div style="font-size: 40px; color: #00b3ef;">Discover, download and park with our Parking Tool
+                    </div>
+                </div>
+            </div>
+            <div class="ibm-columns">
+                <div class="ibm-col-6-4">
+                    <div class="phone-app-isometric"></div>
+                </div>
+                <div class="ibm-col-6-2">
+                    <div style="font-size: 30px; color: #00b3ef; margin-top: 40px;">Parking@IBM</div>
+                    <div style="margin-top: 20px;">
+                        Look on the App Store and<br>download our brand new<br>Parking tool for T115 in<br>Bratislava
+                        and you will never<br>
+                        be without a place to park.
+                    </div>
+
+                    <div style="margin-top: 30px;"></div>
+                    <input type="button" class="ibm-btn-sec ibm-btn-blue-50" value="Try now"/>
+
+                    <div style="margin-top: 30px;"></div>
+                    <img src="store-icons.jpg"/>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER_BEGIN -->
+        <div id="ibm-footer-module"><!-- Dynamic footer links inserted here inside a <section> --></div>
+
+        <!--
+            The footer element represents a footer for its nearest ancestor sectioning content or
+            sectioning root element. When the nearest ancestor sectioning content or sectioning root
+            element is the body element, then it applies to the whole page.
+        -->
+        <footer role="contentinfo" aria-label="IBM">
+            <div id="ibm-footer">
+                <ul>
+                    <li><a href="http://www.ibm.com/contact/us/en/">Contact</a></li>
+                    <li><a href="http://www.ibm.com/privacy/us/en/">Privacy</a></li>
+                    <li><a href="http://www.ibm.com/legal/us/en/">Terms of use</a></li>
+                    <li><a href="http://www.ibm.com/accessibility/us/en/">Accessibility</a></li>
+                </ul>
+            </div>
+        </footer>
+        <!-- FOOTER_END -->
+
+
+    </div>
+
+
+    <!--
+    <div id="ibm-metrics">
+        <script src="//www.ibm.com/common/stats/stats.js" type="text/javascript"></script>
+    </div>
+    -->
+</body>
+</html>
+
